@@ -6,5 +6,10 @@
 
 ## Por que ele existe? Qual problema ele resolve?
 
+## OBS
+
+Pra esse projeto estou usando uma maquina virtual do proprio python, aqui estão os comandos:
+- Criar a VM -> py -m venv .venv
+- Rodar a VM -> .venv\Scripts\activate
 
 
