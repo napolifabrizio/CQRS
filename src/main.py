@@ -2,6 +2,7 @@ from services.service import add_document, delete_document
 from models.Transaction import Transaction, PaymentMethod
 
 test = Transaction(
+    CodCli=id(10),
     Cpf="12345678901",
     Name="Fabrizio",
     Price=10,
@@ -10,5 +11,5 @@ test = Transaction(
     PaymentMethod="Credit Card"
 )
 
-add_document(test)
-# delete_document("s")
+# add_document(test)
+delete_document(2)

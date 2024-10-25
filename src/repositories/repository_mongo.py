@@ -5,6 +5,11 @@ def insert_one_mongo(document: dict) -> str:
         raise "Document can't be inserted"
     return "Document inserted"
 
-def delete_one_mongo(Cpf):
-    if not collection_transaction.delete_one({"Cpf": Cpf}):
+def delete_one_mongo(cod):
+    if not collection_transaction.delete_one({"CodCli": cod}):
         return "Document not found or wrong parameter"
+
+def get_one_mongo(cod):
+    if collection_transaction.find_one({"CodCli": cod}):
+        return True
+    return False

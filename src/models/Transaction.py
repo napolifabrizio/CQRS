@@ -13,6 +13,7 @@ class PaymentMethod(str, Enum):
 
 class Transaction(BaseModel):
 
+    CodCli: int
     Cpf: Optional[str]
     Name: str
     Price: float
