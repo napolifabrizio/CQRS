@@ -1,4 +1,4 @@
-from config.config import collection_transaction
+from config.config_mongo import collection_transaction
 
 def insert_one_mongo(document: dict) -> bool:
     if collection_transaction.insert_one(document):
