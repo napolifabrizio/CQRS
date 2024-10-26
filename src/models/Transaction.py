@@ -1,3 +1,5 @@
+from typing import Optional
+from bson import Binary
 from pydantic import BaseModel
 from decimal import Decimal
 from enum import Enum
@@ -9,14 +11,12 @@ class PaymentMethod(str, Enum):
     DebitCard = "Debit Card"
     Money = "Money"
 
-    @classmethod
-    def is_valid(cls, method: str) -> bool:
-        return method in cls._member_map
-
 class Transaction(BaseModel):
 
-    id: int
+    CodCli: int
+    Cpf: Optional[str]
     Name: str
-    Price: Decimal
+    Price: float
     Company: str
-    PaymentMethod: PaymentMethod
+    PaymentMethod: str
+    Product: str
