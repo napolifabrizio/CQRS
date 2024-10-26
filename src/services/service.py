@@ -1,4 +1,4 @@
-from repositories.repository_mongo import insert_one_mongo, delete_one_mongo, get_one_mongo
+from repositories.repository_mongo import insert_one_mongo, delete_one_mongo, get_one_mongo, update_one_mongo
 from models.Transaction import Transaction, PaymentMethod
 
 def add_document(document: Transaction):
@@ -14,4 +14,10 @@ def delete_document(cod):
         delete_one_mongo(cod)
         return True
     print("Account nof found")
+    return False
+
+def update_document(cod, new_valor):
+    if update_one_mongo(cod, {"$set": new_valor}):
+        return True
+    print("There is something wrong")
     return False
