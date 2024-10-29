@@ -1,4 +1,5 @@
 from repositories.repository_mongo import insert_one_mongo, delete_one_mongo, get_one_mongo, update_one_mongo
+from repositories.repository_sql import insert_sql
 from models.Transaction import Transaction
 
 def add_document(document: Transaction):
@@ -6,6 +7,7 @@ def add_document(document: Transaction):
         print("The account already exists")
         return False
     document_json = document.model_dump()
+    insert_sql(document_json)
     insert_one_mongo(document_json)
     return True
 
