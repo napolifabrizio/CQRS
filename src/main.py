@@ -1,16 +1,18 @@
-from services.service import add_document, delete_document, update_document
+from services.service import add_document, delete_document, update_document, get_document
 from models.Transaction import Transaction, PaymentMethod
 
 test = Transaction(
-    CodCli=id(10),
+    CodCli=1,
     Cpf="12345678901",
     Name="Fabrizio",
     Price=10,
     Company="Apple",
     Product="Iphone X",
-    PaymentMethod="Credit Card"
+    PaymentMethod="Debit Card"
 )
 
-update_document(140725041765080, {"Name": "Juju"})
+# update_document(140725041765080, {"Name": "Juju"})
 # add_document(test)
-# delete_document(2)
+# update_document(document=test, new_valor={"PaymentMethod": test.PaymentMethod})
+# delete_document(1)
+print(get_document(2))
