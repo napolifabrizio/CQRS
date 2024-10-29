@@ -8,9 +8,10 @@ test = Transaction(
     Price=10,
     Company="Apple",
     Product="Iphone X",
-    PaymentMethod="Credit Card"
+    PaymentMethod="Debit Card"
 )
 
 # update_document(140725041765080, {"Name": "Juju"})
-add_document(test)
-# delete_document(2)
+# add_document(test)
+# update_document(document=test, new_valor={"PaymentMethod": test.PaymentMethod})
+delete_document(1)

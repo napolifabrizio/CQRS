@@ -34,3 +34,32 @@ def insert_sql(document: dict):
     with engine.connect() as conn:
         res = conn.execute(stmt)
         conn.commit()
+
+def update_sql(document: dict):
+    stmt = (
+        update(TABLE_TRANSACTIONS)
+        .where(TABLE_TRANSACTIONS.c.codcli == document["CodCli"])
+        .values(
+            codcli=document["CodCli"],
+            cpf=document["Cpf"],
+            name=document["Name"],
+            price=document["Price"],
+            company=document["Company"],
+            paymentmethod=document["PaymentMethod"],
+            product=document["Product"]
+        )
+    )
+
+    with engine.connect() as conn:
+        res = conn.execute(stmt)
+        conn.commit()
+
+def delete_sql(codcli: int):
+    stmt = (
+        delete(TABLE_TRANSACTIONS)
+        .where(TABLE_TRANSACTIONS.c.codcli == codcli)
+    )
+
+    with engine.connect() as conn:
+        res = conn.execute(stmt)
+        conn.commit()
