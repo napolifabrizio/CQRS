@@ -63,3 +63,14 @@ def delete_sql(codcli: int):
     with engine.connect() as conn:
         res = conn.execute(stmt)
         conn.commit()
+
+
+def select_sql(codcli: int):
+    stmt = (
+        select(TABLE_TRANSACTIONS)
+        .where(TABLE_TRANSACTIONS.c.codcli == codcli)
+    )
+
+    with engine.connect() as conn:
+        for row in conn.execute(stmt):
+            return row
