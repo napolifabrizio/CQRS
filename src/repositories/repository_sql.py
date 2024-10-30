@@ -1,7 +1,7 @@
 
 from sqlalchemy import insert, delete, select, update
 
-class RepoSql():
+class SqlRepo():
 
     def __init__(self, engine, table):
         self._engine = engine

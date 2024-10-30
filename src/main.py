@@ -1,5 +1,9 @@
-from services.service import add_document, delete_document, update_document, get_document
-from models.Transaction import Transaction, PaymentMethod
+from models.Transaction import Transaction
+from services.service import Service
+from repositories.repository_mongo import MongoRepo
+from repositories.repository_sql import SqlRepo
+
+service = Service()
 
 test = Transaction(
     CodCli=1,
@@ -11,8 +15,3 @@ test = Transaction(
     PaymentMethod="Debit Card"
 )
 
-# update_document(140725041765080, {"Name": "Juju"})
-# add_document(test)
-# update_document(document=test, new_valor={"PaymentMethod": test.PaymentMethod})
-# delete_document(1)
-print(get_document(2))
