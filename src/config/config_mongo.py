@@ -16,5 +16,3 @@ class ConfigMongo():
     def collection_transaction(self):
         collection = self._database_all_transactions()
         return collection["Transaction"]
-
-
