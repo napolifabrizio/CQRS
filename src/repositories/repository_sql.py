@@ -1,11 +1,12 @@
 
 from sqlalchemy import insert, delete, select, update
+from config.config_sql import ConfigSql
 
 class SqlRepo():
 
-    def __init__(self, engine, table):
-        self._engine = engine
-        self._table = table
+    def __init__(self, config: ConfigSql):
+        self._engine = config.engine()
+        self._table = config.table()
 
     def insert_sql(self, document: dict):
         stmt = (
