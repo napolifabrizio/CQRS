@@ -42,7 +42,7 @@ class SqlRepo():
     def delete_sql(self, codcli: int):
         stmt = (
             delete(self._table)
-            .where(self._table.c.Codcli == codcli)
+            .where(self._table.c.CodCli == codcli)
         )
 
         with self._engine.connect() as conn:

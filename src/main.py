@@ -23,7 +23,8 @@ test = Transaction(
     Company="Apple",
 )
 
-service.add_document(test)
+# service.add_document(test)
+service.delete_document(30)
 
 # print(test.model_dump().items())
 # service.delete_document(100)
