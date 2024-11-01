@@ -1,21 +1,26 @@
-from config.config_mongo import collection_transaction
+from config.config_mongo import ConfigMongo
 
-def insert_one_mongo(document: dict) -> bool:
-    if collection_transaction.insert_one(document):
-        return True
-    return False
+class MongoRepo():
 
-def delete_one_mongo(cod: int) -> bool:
-    if collection_transaction.delete_one({"CodCli": cod}):
-        return True
-    return False
+    def __init__(self, config: ConfigMongo):
+        self._collection = config.collection_transaction()
 
-def get_one_mongo(cod: int) -> bool:
-    if collection_transaction.find_one({"CodCli": cod}):
-        return True
-    return False
+    def insert_one_mongo(self, document: dict) -> bool:
+        if self._collection.insert_one(document):
+            return True
+        return False
 
-def update_one_mongo(cod: int, new_valor: dict) -> bool:
-    if collection_transaction.update_one({"CodCli": cod}, new_valor):
-        return True
-    return False
+    def delete_one_mongo(self, cod: int) -> bool:
+        if self._collection.delete_one({"CodCli": cod}):
+            return True
+        return False
+
+    def get_one_mongo(self, cod: int) -> bool:
+        if self._collection.find_one({"CodCli": cod}):
+            return True
+        return False
+
+    def update_one_mongo(self, cod: int, new_valor: dict) -> bool:
+        if self._collection.update_one({"CodCli": cod}, new_valor):
+            return True
+        return False

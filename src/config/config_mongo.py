@@ -1,12 +1,18 @@
 import os
 from pymongo import MongoClient
 
-def get_database(dbname: str):
-    CONNECTION_STRING = os.environ.get('LINK_DATABASE_MONGO', "must_be_set_in_env")
+class ConfigMongo():
 
-    client = MongoClient(CONNECTION_STRING)
+    def __init__(self):
+        self._linkDatabase = os.environ.get('LINK_DATABASE_MONGO', "must_be_set_in_env")
 
-    return client[dbname]
+    def _client(self):
+        return MongoClient(self._linkDatabase)
 
-db_transaction = get_database("AllTransactions")
-collection_transaction = db_transaction["Transaction"]
+    def _database_all_transactions(self):
+        client = self._client()
+        return client["AllTransactions"]
+
+    def collection_transaction(self):
+        collection = self._database_all_transactions()
+        return collection["Transaction"]
