@@ -1,6 +1,8 @@
 
+import json
 from sqlalchemy import insert, delete, select, update
 from config.config_sql import ConfigSql
+from models.Transaction import Transaction
 
 class SqlRepo():
 
@@ -11,15 +13,7 @@ class SqlRepo():
     def insert_sql(self, document: dict):
         stmt = (
             insert(self._table)
-            .values(
-                codcli=document["CodCli"],
-                cpf=document["Cpf"],
-                name=document["Name"],
-                price=document["Price"],
-                company=document["Company"],
-                paymentmethod=document["PaymentMethod"],
-                product=document["Product"]
-            )
+            .values(document)
         )
 
         with self._engine.connect() as conn:
@@ -48,7 +42,7 @@ class SqlRepo():
     def delete_sql(self, codcli: int):
         stmt = (
             delete(self._table)
-            .where(self._table.c.codcli == codcli)
+            .where(self._table.c.Codcli == codcli)
         )
 
         with self._engine.connect() as conn:
@@ -59,7 +53,7 @@ class SqlRepo():
     def select_sql(self, codcli: int):
         stmt = (
             select(self._table)
-            .where(self._table.c.codcli == codcli)
+            .where(self._table.c.Codcli == codcli)
         )
 
         with self._engine.connect() as conn:

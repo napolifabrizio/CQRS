@@ -1,26 +1,34 @@
 import os
-from sqlalchemy import create_engine, Column, Table, INTEGER, VARCHAR, FLOAT
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import create_engine, Column, INTEGER, VARCHAR, FLOAT
+from sqlalchemy.engine import URL
+from sqlalchemy.schema import Table, MetaData
 
 class ConfigSql():
     def __init__(self):
-        self._base = declarative_base()
-        self._linkDatabase = os.environ.get('LINK_DATABASE_SQL', "must_be_set_in_env")
+        pass
 
     def engine(self):
-        engine = create_engine(self._linkDatabase)
+        url = URL.create(
+            drivername="postgresql",
+            host=os.environ.get("POSTGRE_HOST"),
+            port=os.environ.get("POSTGRE_PORT"),
+            username=os.environ.get("POSTGRE_USERNAME"),
+            password=os.environ.get("POSTGRE_PASSWORD"),
+            database=os.environ.get("POSTGRE_DATABASE"),
+        )
+        engine = create_engine(url)
         return engine
 
     def table(self):
         table = Table(
-            "transactions",
-            self._base.metadata,
-            Column("codcli", INTEGER, primary_key=True),
-            Column("cpf", VARCHAR(30), nullable=False),
-            Column("name", VARCHAR(100), nullable=False),
-            Column("price", FLOAT, nullable=False),
-            Column("company", VARCHAR(50), nullable=False),
-            Column("paymentmethod", VARCHAR(20), nullable=False),
-            Column("product", VARCHAR(30), nullable=True)
+            "Transactions",
+            MetaData(),
+            Column("CodCli", INTEGER, primary_key=True),
+            Column("Cpf", VARCHAR(30), nullable=False),
+            Column("Name", VARCHAR(100), nullable=False),
+            Column("Price", FLOAT, nullable=False),
+            Column("Company", VARCHAR(50), nullable=False),
+            Column("PaymentMethod", VARCHAR(20), nullable=False),
+            Column("Product", VARCHAR(30), nullable=True)
         )
         return table

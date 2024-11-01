@@ -1,8 +1,9 @@
+from config.config_mongo import ConfigMongo
 
 class MongoRepo():
 
-    def __init__(self, collection):
-        self._collection = collection
+    def __init__(self, config: ConfigMongo):
+        self._collection = config.collection_transaction()
 
     def insert_one_mongo(self, document: dict) -> bool:
         if self._collection.insert_one(document):
