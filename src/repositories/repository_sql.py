@@ -24,15 +24,7 @@ class SqlRepo():
         stmt = (
             update(self._table)
             .where(self._table.c.codcli == document["CodCli"])
-            .values(
-                codcli=document["CodCli"],
-                cpf=document["Cpf"],
-                name=document["Name"],
-                price=document["Price"],
-                company=document["Company"],
-                paymentmethod=document["PaymentMethod"],
-                product=document["Product"]
-            )
+            .values(document)
         )
 
         with self._engine.connect() as conn:
